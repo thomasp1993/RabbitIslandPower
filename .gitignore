@@ -1,0 +1,5 @@
+#ignore class files, no need to keep track of those
+*.class
+
+#ignore vim temp. files
+*.sw*
