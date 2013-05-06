@@ -40,8 +40,8 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    //model = new DatabaseModel();
-                    window = new MainWindow();
+                    model = new DatabaseModel();
+                    window = new MainWindow(model);
                     window.setVisible(true);
                 } catch (SQLException ex) {
                     System.out.println("Notify about exception here!");
