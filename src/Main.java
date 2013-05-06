@@ -1,4 +1,4 @@
-package vetpet.controller;
+
 
 import java.sql.SQLException;
 import vetpet.model.DatabaseModel;
@@ -40,8 +40,8 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    model = new DatabaseModel();
-                    window = new MainWindow(model);
+                    //model = new DatabaseModel();
+                    window = new MainWindow();
                     window.setVisible(true);
                 } catch (SQLException ex) {
                     System.out.println("Notify about exception here!");
