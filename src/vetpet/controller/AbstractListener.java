@@ -16,4 +16,12 @@ public abstract class AbstractListener implements ActionListener{
     @Override
     public abstract void actionPerformed(ActionEvent evt);
     
+    public void changeDatabaseModel(DatabaseModel d){
+        dbmodel = d ;
+        mwindow.addDatabase(d);
+    }
+    
+    public void changeWindow(MainWindow w){
+        mwindow = w ;
+    }
 }

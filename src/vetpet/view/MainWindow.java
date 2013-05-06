@@ -6,6 +6,8 @@ package vetpet.view;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import vetpet.controller.AddClientActionPerformed;
 import vetpet.controller.ConfirmActionPerformed;
 import vetpet.controller.TextAddressActionPerformed;
@@ -19,17 +21,16 @@ import vetpet.model.DatabaseModel;
 public class MainWindow extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
-    private DatabaseModel dbm ;
-    
+    private DatabaseModel dbm;
+
     public MainWindow(DatabaseModel db) {
-        this.dbm = db ;
+        this.dbm = db;
         initComponents();
     }
-    
-    public void addDatabase(DatabaseModel db){
-        this.dbm = db ;
+
+    public void addDatabase(DatabaseModel db) {
+        this.dbm = db;
     }
-    
     private javax.swing.JTextField TextAll;
     private javax.swing.JTextField TextCurrent;
     private javax.swing.JButton btnAddClient;
@@ -134,7 +135,7 @@ public class MainWindow extends JFrame {
 
         textCard.addActionListener(new TextCardActionPerformed(dbm, this));
 
-        textAddress.addActionListener(new TextAddressActionPerformed(dbm,this));
+        textAddress.addActionListener(new TextAddressActionPerformed(dbm, this));
 
         btnPrevious.setText("Προηγούμενο");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +198,7 @@ public class MainWindow extends JFrame {
         jToolBar1.setRollover(true);
 
         btnAddClient.setText("Προσθήκη πελάτη");
-        btnAddClient.addActionListener(new AddClientActionPerformed(dbm,this));
+        btnAddClient.addActionListener(new AddClientActionPerformed(dbm, this));
 
         btnSearchName.setText("Αναζήτηση με Όνομα");
         btnSearchName.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +272,7 @@ public class MainWindow extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clearClientForm() {
+    public void disableClientForm() {
         textCard.setText("");
         textName.setText("");
         textAddress.setText("");
@@ -297,8 +298,85 @@ public class MainWindow extends JFrame {
         btnConfirm.setEnabled(true);
         btnCancel.setEnabled(true);
     }
+
+    public void enableClientForm() {
+        //DISABLE BUTTONS
+        btnPrevious.setEnabled(true);
+        btnNext.setEnabled(true);
+        btnStart.setEnabled(true);
+        btnLast.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnSearchName.setEnabled(true);
+        btnSearchNumber.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnAddPoints.setEnabled(true);
+        btnAddClient.setEnabled(true);
+
+        //ENABLE BUTTONS
+        btnConfirm.setEnabled(false);
+        btnCancel.setEnabled(false);
+    }
+
+    public void set(ResultSet rs) throws SQLException {
+        textCard.setText(Integer.toString(rs.getInt(1)));
+        textName.setText(rs.getString(2));
+        textAddress.setText(rs.getString(3));
+        textHome.setText(Long.toString(rs.getLong(4)));
+        textMobile.setText(Long.toString(rs.getLong(5)));
+        textPoints.setText(Integer.toString(rs.getInt(6)));
+        textBonus.setText(Integer.toString(rs.getInt(7)));
+        textDebt.setText(Double.toString(rs.getDouble(8)));
+
+
+        int pos = rs.getRow();
+        rs.beforeFirst();
+        int total = 0;
+        while (rs.next()) {
+            total++;
+        }
+        rs.absolute(pos);
+        TextAll.setText(Integer.toString(total));
+    }
+
+    public void notifyException(Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+        System.out.println("Exception of type " + e.getClass() + " , with message " + e.getMessage());
+    }
+
+    public int getNumber() {
+        return Integer.parseInt(textCard.getText());
+    }
+
+    public String getName() {
+        return textName.getText();
+    }
+
+    public String getAddress() {
+        return textAddress.getText();
+    }
+
+    public long getHome() {
+        return Long.parseLong(textHome.getText());
+    }
+
+    public long getMobile() {
+
+        return Long.parseLong(textMobile.getText());
+    }
+
+    public int getPoints() {
+        return Integer.parseInt(textPoints.getText());
+    }
+
+    public int getBonus() {
+        return Integer.parseInt(textBonus.getText());
+    }
+
+    public double getDebt() {
+        return Double.parseDouble(textDebt.getText());
+    }
     
-    public void notifyException(Exception e){
-        System.out.println("Exception of type "+e.getClass()+" , with message "+e.getMessage());
+    public void updateTextField(String fieldName, String fieldVal){
+        //look for element 
     }
 }

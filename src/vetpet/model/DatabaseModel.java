@@ -22,6 +22,10 @@ public class DatabaseModel {
     public ResultSet getResultSet(){
         return rs ;
     }
+    
+    public Statement getstmt(){
+        return stmt;
+    }
 
     public Connection getConnection(){
         return con ;
