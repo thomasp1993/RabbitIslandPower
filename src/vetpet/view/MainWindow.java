@@ -1,23 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package vetpet.view;
 
+import java.util.logging.Level; //loggers are optional 
+import java.util.logging.Logger;
 import javax.swing.*;
-import java.awt.event.*;
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import vetpet.controller.AddClientActionPerformed;
-import vetpet.controller.ConfirmActionPerformed;
-import vetpet.controller.TextAddressActionPerformed;
-import vetpet.controller.TextCardActionPerformed;
+import vetpet.controller.*;
 import vetpet.model.DatabaseModel;
 
-/**
- *
- * @author dio
- */
 public class MainWindow extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
@@ -377,6 +368,27 @@ public class MainWindow extends JFrame {
     }
     
     public void updateTextField(String fieldName, String fieldVal){
-        //look for element 
+        try {
+            //look for element 
+            //info at http://tutorials.jenkov.com/java-reflection/private-fields-and-methods.html
+            // and http://docs.oracle.com/javase/tutorial/reflect/class/classMembers.html
+            Field c = MainWindow.class.getDeclaredField(fieldName);
+            c.setAccessible(true);
+            JTextField f = (JTextField) c.get(this);
+            f.setText(fieldVal);
+            c.setAccessible(false);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            notifyException(ex);
+        } catch (NoSuchFieldException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            notifyException(ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            notifyException(ex);
+        } catch (NullPointerException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            notifyException(ex);
+        }
     }
 }
