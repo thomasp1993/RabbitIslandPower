@@ -5,9 +5,13 @@
 package vetpet.view;
 
 import javax.swing.*;
-import java.awt.event.* ;
+import java.awt.event.*;
+import vetpet.controller.AddClientActionPerformed;
+import vetpet.controller.ConfirmActionPerformed;
 import vetpet.controller.TextAddressActionPerformed;
 import vetpet.controller.TextCardActionPerformed;
+import vetpet.model.DatabaseModel;
+
 /**
  *
  * @author dio
@@ -15,8 +19,15 @@ import vetpet.controller.TextCardActionPerformed;
 public class MainWindow extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
-    public MainWindow(){
+    private DatabaseModel dbm ;
+    
+    public MainWindow(DatabaseModel db) {
+        this.dbm = db ;
         initComponents();
+    }
+    
+    public void addDatabase(DatabaseModel db){
+        this.dbm = db ;
     }
     
     private javax.swing.JTextField TextAll;
@@ -121,15 +132,15 @@ public class MainWindow extends JFrame {
 
         jLabel9.setText("Χρέος");
 
-        textCard.addActionListener(new TextCardActionPerformed());
+        textCard.addActionListener(new TextCardActionPerformed(dbm, this));
 
-        textAddress.addActionListener(new TextAddressActionPerformed());
+        textAddress.addActionListener(new TextAddressActionPerformed(dbm,this));
 
         btnPrevious.setText("Προηγούμενο");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               // btnPreviousActionPerformed(evt);
+                // btnPreviousActionPerformed(evt);
             }
         });
 
@@ -186,12 +197,7 @@ public class MainWindow extends JFrame {
         jToolBar1.setRollover(true);
 
         btnAddClient.setText("Προσθήκη πελάτη");
-        btnAddClient.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //btnAddClientActionPerformed(evt);
-            }
-        });
+        btnAddClient.addActionListener(new AddClientActionPerformed(dbm,this));
 
         btnSearchName.setText("Αναζήτηση με Όνομα");
         btnSearchName.addActionListener(new java.awt.event.ActionListener() {
@@ -227,19 +233,14 @@ public class MainWindow extends JFrame {
 
         btnConfirm.setText("Επιβεβαίωση");
         btnConfirm.setEnabled(false);
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //btnConfirmActionPerformed(evt);
-            }
-        });
+        btnConfirm.addActionListener(new ConfirmActionPerformed(dbm, this));
 
         btnCancel.setText("Ακύρωση");
         btnCancel.setEnabled(false);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               // btnCancelActionPerformed(evt);
+                // btnCancelActionPerformed(evt);
             }
         });
 
@@ -269,4 +270,35 @@ public class MainWindow extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void clearClientForm() {
+        textCard.setText("");
+        textName.setText("");
+        textAddress.setText("");
+        textHome.setText("");
+        textMobile.setText("");
+        textPoints.setText("");
+        textBonus.setText("");
+        textDebt.setText("");
+
+        //DISABLE BUTTONS
+        btnPrevious.setEnabled(false);
+        btnNext.setEnabled(false);
+        btnStart.setEnabled(false);
+        btnLast.setEnabled(false);
+        btnDelete.setEnabled(false);
+        btnSearchName.setEnabled(false);
+        btnSearchNumber.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnAddPoints.setEnabled(false);
+        btnAddClient.setEnabled(false);
+
+        //ENABLE BUTTONS
+        btnConfirm.setEnabled(true);
+        btnCancel.setEnabled(true);
+    }
+    
+    public void notifyException(Exception e){
+        System.out.println("Exception of type "+e.getClass()+" , with message "+e.getMessage());
+    }
 }

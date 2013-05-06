@@ -14,7 +14,19 @@ public class DatabaseModel {
     private Statement stmt, STMT;
     private ResultSet rs;
     private int curRow;
+    
+    public DatabaseModel() throws SQLException{
+        doConnect();
+    }
+    
+    public ResultSet getResultSet(){
+        return rs ;
+    }
 
+    public Connection getConnection(){
+        return con ;
+    }
+    
     /* creates table PELATES if !exists , otherwise connects to it*/
     public void doConnect() throws SQLException {
         //CONNECT TO DATABASE
@@ -27,10 +39,11 @@ public class DatabaseModel {
         if (!tables.next()) {
             String createTable = "CREATE TABLE PELATES (arithmos INT, onomatepwnumo VARCHAR(100),dieuthinsi VARCHAR(100), stathero BIGINT, kinito BIGINT, pontoi INT, xbonus INT, xreos DOUBLE)";
             STMT.executeUpdate(createTable);
-//          String insertRow = "INSERT INTO PELATES VALUES (1, 'ΟΝΟΜΑ', 'ΔΙΕΥΘΥΝΣΗ', 0, 0, 0, 0, 0)";
-//          STMT.executeUpdate(insertRow);
+          String insertRow = "INSERT INTO PELATES VALUES (1, 'ΟΝΟΜΑ', 'ΔΙΕΥΘΥΝΣΗ', 0, 0, 0, 0, 0)";
+          STMT.executeUpdate(insertRow);
             STMT.close();
         }
+        Reload();
     }
 
     public void Reload() throws SQLException {

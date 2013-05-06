@@ -1,18 +1,22 @@
 package vetpet.controller;
+
+import java.sql.SQLException;
 import vetpet.model.DatabaseModel;
 import vetpet.view.MainWindow;
 
 public class Main {
-    private DatabaseModel model ;
-    private MainWindow window ;
-    public static void main(String args[]){
+
+    private DatabaseModel model;
+    private MainWindow window;
+
+    public static void main(String args[]) {
         new Main();
     }
-    
-    public Main(){
+
+    public Main() {
         System.out.println("Starting VetPet Version...");
-        
-         try {
+
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -32,11 +36,18 @@ public class Main {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
             public void run() {
-                window = new MainWindow();
-                window.setVisible(true);
+                try {
+                    model = new DatabaseModel();
+                    window = new MainWindow(model);
+                    window.setVisible(true);
+                } catch (SQLException ex) {
+                    System.out.println("Notify about exception here!");
+                    ex.printStackTrace();
+                }
             }
         });
-        
     }
 }
