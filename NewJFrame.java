@@ -434,78 +434,7 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClientActionPerformed
-        
-        try{
-            curRow = rs.getRow();
-            
-            textCard.setText("");
-            textName.setText("");
-            textAddress.setText("");
-            textHome.setText("");
-            textMobile.setText("");
-            textPoints.setText("");
-            textBonus.setText("");
-            textDebt.setText("");
-            
-            //DISABLE BUTTONS
-            btnPrevious.setEnabled( false );
-            btnNext.setEnabled( false );
-            btnStart.setEnabled( false );
-            btnLast.setEnabled( false );
-            btnDelete.setEnabled( false );
-            btnSearchName.setEnabled( false );
-            btnSearchNumber.setEnabled( false );
-            btnSave.setEnabled( false );
-            btnAddPoints.setEnabled( false );
-            btnAddClient.setEnabled( false );
-        
-            //ENABLE BUTTONS
-            btnConfirm.setEnabled( true );
-            btnCancel.setEnabled( true );
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }   
-    }
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
-        int number = Integer.parseInt(textCard.getText());
-        String name = textName.getText();
-        String address = textAddress.getText();
-        long home = Long.parseLong(textHome.getText());
-        long mobile = Long.parseLong(textMobile.getText());
-        int points = Integer.parseInt(textPoints.getText());
-        int bonus = Integer.parseInt(textBonus.getText());
-        double debt = Double.parseDouble(textDebt.getText());
-        
-        try{
-            int pos = rs.getRow();
-            rs.updateInt(1, number);
-            rs.updateString(2, name);
-            rs.updateString(3, address);
-            rs.updateLong(4, home);
-            rs.updateLong(5, mobile);
-            rs.updateInt(6, points);
-            rs.updateInt(7, bonus);
-            rs.updateDouble(8, debt);
-            rs.updateRow();
-            JOptionPane.showMessageDialog(null, "Αποθηκεύτηκε!");
-            
-            stmt.close();
-            rs.close();
-            
-            Reload();
-            rs.absolute(pos);
-            set();
-            
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage());
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
+    
     private void btnSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNameActionPerformed
         
         try{
@@ -612,32 +541,6 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        try{
-            
-            rs.absolute(curRow);
-            set();
-            //DISABLE BUTTONS
-            btnPrevious.setEnabled( true );
-            btnNext.setEnabled( true );
-            btnStart.setEnabled( true );
-            btnLast.setEnabled( true );
-            btnDelete.setEnabled( true );
-            btnSearchName.setEnabled( true );
-            btnSearchNumber.setEnabled( true );
-            btnSave.setEnabled( true );
-            btnAddPoints.setEnabled( true );
-            btnAddClient.setEnabled( true );
-        
-            //ENABLE BUTTONS
-            btnConfirm.setEnabled( false );
-            btnCancel.setEnabled( false );
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         

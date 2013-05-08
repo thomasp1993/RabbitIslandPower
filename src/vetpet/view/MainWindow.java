@@ -130,20 +130,10 @@ private javax.swing.JTextField TextAll;
         textAddress.addActionListener(new TextAddressActionPerformed(dbm, this));
 
         btnPrevious.setText("Προηγούμενο");
-        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // btnPreviousActionPerformed(evt);
-            }
-        });
+        btnPrevious.addActionListener(new PreviousActionPerformed(dbm, this));
 
         btnNext.setText("Επόμενο");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //btnNextActionPerformed(evt);
-            }
-        });
+        btnNext.addActionListener(new NextActionPerformed(dbm, this));
 
         btnStart.setText("Αρχή");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -230,12 +220,7 @@ private javax.swing.JTextField TextAll;
 
         btnCancel.setText("Ακύρωση");
         btnCancel.setEnabled(false);
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // btnCancelActionPerformed(evt);
-            }
-        });
+        btnCancel.addActionListener(new CancelActionPerformed(dbm, this));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

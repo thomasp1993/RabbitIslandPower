@@ -7,8 +7,6 @@ package vetpet.controller;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import vetpet.model.DatabaseModel;
 import vetpet.view.MainWindow;
 
