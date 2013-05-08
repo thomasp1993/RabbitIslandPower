@@ -1,7 +1,6 @@
 package vetpet.controller;
 
 import java.awt.event.ActionEvent;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import vetpet.model.DatabaseModel;
 import vetpet.view.MainWindow;

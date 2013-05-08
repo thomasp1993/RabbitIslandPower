@@ -28,9 +28,7 @@ public class SaveActionPerformed extends AbstractListener {
             int bonus = mwindow.getBonus();
             double debt = mwindow.getDebt();
 
-
             int pos = dbmodel.getResultSet().getRow();
-            ResultSet rs = dbmodel.getResultSet();
             dbmodel.getResultSet().updateInt(1, number);
             dbmodel.getResultSet().updateString(2, name);
             dbmodel.getResultSet().updateString(3, address);
@@ -44,7 +42,7 @@ public class SaveActionPerformed extends AbstractListener {
             dbmodel.getResultSet().close();
             dbmodel.Reload();
             dbmodel.getResultSet().absolute(pos);
-            mwindow.set(rs);
+            mwindow.set(dbmodel.getResultSet());
         } catch (SQLException ex) {
             mwindow.notifyException(ex);
         }
