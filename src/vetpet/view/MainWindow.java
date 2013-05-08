@@ -150,6 +150,9 @@ private javax.swing.JTextField TextAll;
         btnCancel.setEnabled(false);
         btnCancel.addActionListener(new CancelActionPerformed(dbm, this));
         
+        btnSave.setText("Αποθήκευση");
+        btnSave.addActionListener(new SaveActionPerformed(dbm, this));
+        
         TextCurrent.setText("1");
 
         TextAll.setText("total");
@@ -180,15 +183,7 @@ private javax.swing.JTextField TextAll;
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(btnAddClient).addComponent(btnConfirm).addComponent(btnCancel)).addGap(18, 18, 18).addComponent(btnDelete).addGap(18, 18, 18).addComponent(btnSearchName).addGap(18, 18, 18).addComponent(btnSearchNumber).addGap(18, 18, 18).addComponent(btnAddPoints).addGap(34, 34, 34).addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(136, Short.MAX_VALUE)));
 
         jToolBar1.add(jPanel2);
-
-        btnSave.setText("Αποθήκευση");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //btnSaveActionPerformed(evt);
-            }
-        });
-
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
