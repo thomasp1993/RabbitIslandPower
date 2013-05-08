@@ -13,16 +13,7 @@ public class MainWindow extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
     private DatabaseModel dbm;
-
-    public MainWindow(DatabaseModel db) {
-        this.dbm = db;
-        initComponents();
-    }
-
-    public void addDatabase(DatabaseModel db) {
-        this.dbm = db;
-    }
-    private javax.swing.JTextField TextAll;
+private javax.swing.JTextField TextAll;
     private javax.swing.JTextField TextCurrent;
     private javax.swing.JButton btnAddClient;
     private javax.swing.JButton btnAddPoints;
@@ -58,6 +49,16 @@ public class MainWindow extends JFrame {
     private javax.swing.JTextField textMobile;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textPoints;
+    
+    public MainWindow(DatabaseModel db) {
+        this.dbm = db;
+        initComponents();
+    }
+
+    public void addDatabase(DatabaseModel db) {
+        this.dbm = db;
+    }
+    
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -317,7 +318,6 @@ public class MainWindow extends JFrame {
         textPoints.setText(Integer.toString(rs.getInt(6)));
         textBonus.setText(Integer.toString(rs.getInt(7)));
         textDebt.setText(Double.toString(rs.getDouble(8)));
-
 
         int pos = rs.getRow();
         rs.beforeFirst();

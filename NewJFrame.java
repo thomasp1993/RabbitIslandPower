@@ -161,45 +161,16 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Χρέος");
 
-        textCard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCardActionPerformed(evt);
-            }
-        });
-
-        textAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textAddressActionPerformed(evt);
-            }
-        });
-
         btnPrevious.setText("Προηγούμενο");
-        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPreviousActionPerformed(evt);
-            }
-        });
+        
 
         btnNext.setText("Επόμενο");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
 
         btnStart.setText("Αρχή");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
+       
 
         btnLast.setText("Τέλος");
-        btnLast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLastActionPerformed(evt);
-            }
-        });
+        
 
         TextCurrent.setText("1");
         TextCurrent.addActionListener(new java.awt.event.ActionListener() {
@@ -495,72 +466,8 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         catch(SQLException err){
             JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-        
-        
-    }//GEN-LAST:event_btnAddClientActionPerformed
-
-    private void textCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCardActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCardActionPerformed
-
-    private void textAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textAddressActionPerformed
-
-    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        try{
-            if(rs.previous()){
-                set();
-                String pos =Integer.toString(rs.getRow());
-                TextCurrent.setText(pos);
-            }
-            else{
-                rs.next();
-            }
-                
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-    }//GEN-LAST:event_btnPreviousActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        try{
-            if(rs.next()){
-                set();
-                String pos =Integer.toString(rs.getRow());
-                TextCurrent.setText(pos);
-            }
-            else{
-                rs.previous();
-            }
-                
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-    }//GEN-LAST:event_btnNextActionPerformed
-
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        try{
-            rs.first();
-            set();
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        try{
-            rs.last();
-            set();
-        }
-        catch(SQLException err){
-            JOptionPane.showMessageDialog(NewJFrame.this, err.getMessage());
-        }
-    }//GEN-LAST:event_btnLastActionPerformed
+        }   
+    }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         

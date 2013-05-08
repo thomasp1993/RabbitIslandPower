@@ -14,7 +14,7 @@ public class DatabaseModel {
     private Statement stmt, STMT;
     private ResultSet rs;
     private int curRow;
-    
+        
     public DatabaseModel() throws SQLException{
         doConnect();
     }
@@ -32,7 +32,7 @@ public class DatabaseModel {
     }
     
     /* creates table PELATES if !exists , otherwise connects to it*/
-    public void doConnect() throws SQLException {
+    private void doConnect() throws SQLException {
         //CONNECT TO DATABASE
         con = DriverManager.getConnection("jdbc:derby:vet_database1;create=true;");
 
@@ -56,5 +56,9 @@ public class DatabaseModel {
         rs = stmt.executeQuery("SELECT * FROM PELATES");
         //MOVE CURSOR TO FIRST ROW, ADD ALL THE DATA
         rs.next();
+    }
+    
+    public void setCurrRow() throws SQLException{
+        curRow = rs.getRow();
     }
 }
